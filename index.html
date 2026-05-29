@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- samyy-final-fixed-v2 -->
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -1455,6 +1456,12 @@
       transform: translateY(0) scale(1);
     }
 
+    /* page should not go blank if JS fails */
+    body:not(.js-ready) .reveal {
+      opacity: 1;
+      transform: none;
+    }
+
     .delay-1 { transition-delay: .08s; }
     .delay-2 { transition-delay: .16s; }
     .delay-3 { transition-delay: .24s; }
@@ -1768,7 +1775,7 @@
           </div>
 
           <div class="nav-actions">
-            <a class="nav-btn" href="https://github.com/sggamers20155-dev/Sameerkumar" target="_blank" rel="noreferrer">● GitHub</a>
+            <a class="nav-btn" href="https://github.com/5ameer07/portfolioacc-xp" target="_blank" rel="noreferrer">● GitHub</a>
             <button class="icon-btn" id="themeBtn" aria-label="Change theme">☀</button>
             <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
           </div>
@@ -1810,7 +1817,7 @@
             </div>
 
             <div class="hero-socials reveal delay-3">
-              <a class="social-chip" href="https://github.com/sggamers20155-dev" target="_blank" rel="noreferrer">GitHub</a>
+              <a class="social-chip" href="https://github.com/5ameer07" target="_blank" rel="noreferrer">GitHub</a>
               <a class="social-chip" href="https://discord.gg/DmA9cuPfUb" target="_blank" rel="noreferrer">Discord</a>
               <a class="social-chip" href="https://www.instagram.com/5amyy.07?igsh=bnh0M3NldnkxbTVi" target="_blank" rel="noreferrer">Instagram</a>
             </div>
@@ -1967,7 +1974,7 @@
               <h2 class="section-title reveal delay-1">GitHub projects with live motion.</h2>
             </div>
 
-            <a class="btn reveal delay-2" href="https://github.com/sggamers20155-dev?tab=repositories" target="_blank" rel="noreferrer">
+            <a class="btn reveal delay-2" href="https://github.com/5ameer07?tab=repositories" target="_blank" rel="noreferrer">
               <span>All repositories</span>
             </a>
           </div>
@@ -1976,7 +1983,7 @@
             <article class="project-card glass reveal">
               <div class="project-top">
                 <div class="project-icon">●</div>
-                <a class="project-link" href="https://github.com/sggamers20155-dev" target="_blank" rel="noreferrer">↗</a>
+                <a class="project-link" href="https://github.com/5ameer07" target="_blank" rel="noreferrer">↗</a>
               </div>
               <h3>Loading repositories</h3>
               <p>Fetching latest public GitHub projects from your account.</p>
@@ -2017,7 +2024,7 @@
               <h2 class="section-title reveal delay-1">Have a message or idea?</h2>
             </div>
             <p class="section-copy reveal delay-2">
-              Your message will be saved privately in the developer inbox panel.
+              Your message will be sent directly to my email and also saved in this browser inbox.
             </p>
           </div>
 
@@ -2034,36 +2041,43 @@
                   <span class="contact-icon">📸</span> Instagram @5amyy.07
                 </a>
 
-                <a class="contact-item" href="https://github.com/sggamers20155-dev" target="_blank" rel="noreferrer">
-                  <span class="contact-icon">●</span> github.com/sggamers20155-dev
+                <a class="contact-item" href="https://github.com/5ameer07" target="_blank" rel="noreferrer">
+                  <span class="contact-icon">●</span> github.com/5ameer07
                 </a>
 
-                <a class="contact-item" href="https://github.com/sggamers20155-dev/Sameerkumar" target="_blank" rel="noreferrer">
-                  <span class="contact-icon">↗</span> Repo: Sameerkumar
+                <a class="contact-item" href="https://github.com/5ameer07/portfolioacc-xp" target="_blank" rel="noreferrer">
+                  <span class="contact-icon">↗</span> Repo: portfolioacc-xp
                 </a>
               </div>
             </aside>
 
-            <form class="contact-form glass reveal delay-1" id="contactForm">
+            <form class="contact-form glass reveal delay-1"
+                  id="contactForm"
+                  action="https://formsubmit.co/sggamers20155@gmail.com"
+                  method="POST">
               <div class="field">
                 <label for="name">Name</label>
-                <input id="name" type="text" placeholder="Your name">
+                <input id="name" name="name" type="text" placeholder="Your name" required>
               </div>
 
               <div class="field">
                 <label for="email">Email / Contact</label>
-                <input id="email" type="text" placeholder="Email or username">
+                <input id="email" name="email" type="text" placeholder="Email or username" required>
               </div>
 
               <div class="field">
                 <label for="subject">Subject</label>
-                <input id="subject" type="text" placeholder="Project / collab / message">
+                <input id="subject" name="subject" type="text" placeholder="Project / collab / message">
               </div>
 
               <div class="field">
                 <label for="message">Message</label>
-                <textarea id="message" placeholder="Tell me what you want..."></textarea>
+                <textarea id="message" name="message" placeholder="Tell me what you want..." required></textarea>
               </div>
+              <input type="hidden" name="_subject" value="New message from Samyy Portfolio">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_next" value="https://5ameer07.github.io/portfolioacc-xp/#contact">
 
               <div class="form-buttons">
                 <button class="btn btn-primary" type="submit"><span>Send message</span></button>
@@ -2096,7 +2110,7 @@
     <footer class="footer">
       <div class="container footer-inner">
         <div>Sign By 5pidyy - Current Year <span id="year"></span></div>
-        <div>GitHub: sggamers20155-dev/Sameerkumar</div>
+        <div>GitHub: 5ameer07/portfolioacc-xp</div>
       </div>
     </footer>
 
@@ -2105,6 +2119,8 @@
   </div>
 
   <script>
+    document.body.classList.add("js-ready");
+
     // basic elements
     const root = document.documentElement;
     const year = document.getElementById("year");
@@ -2117,8 +2133,8 @@
     const typed = document.getElementById("typed");
     const scrollProgress = document.getElementById("scrollProgress");
 
-    const githubUser = "sggamers20155-dev";
-    const githubRepo = "Sameerkumar";
+    const githubUser = "5ameer07";
+    const githubRepo = "portfolioacc-xp";
 
     year.textContent = new Date().getFullYear();
 
@@ -2446,14 +2462,13 @@
     }
 
     contactForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-
       const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
+      const emailValue = document.getElementById("email").value.trim();
       const subject = document.getElementById("subject").value.trim();
       const message = document.getElementById("message").value.trim();
 
-      if (!name || !email || !message) {
+      if (!name || !emailValue || !message) {
+        event.preventDefault();
         showToast("Name, contact and message add karo.");
         return;
       }
@@ -2462,7 +2477,7 @@
 
       data.push({
         name,
-        email,
+        email: emailValue,
         subject: subject || "New message",
         message,
         date: new Date().toLocaleString()
@@ -2470,8 +2485,8 @@
 
       setSavedData(data);
       renderSavedData();
-      contactForm.reset();
-      showToast("Message saved. Developer inbox me show hoga.");
+      showToast("Message email par send ho raha hai...");
+      // Important: no preventDefault here, so FormSubmit sends the email.
     });
 
 
