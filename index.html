@@ -1455,6 +1455,12 @@
       transform: translateY(0) scale(1);
     }
 
+    /* reveal fallback safety */
+    body:not(.js-ready) .reveal {
+      opacity: 1;
+      transform: none;
+    }
+
     .delay-1 { transition-delay: .08s; }
     .delay-2 { transition-delay: .16s; }
     .delay-3 { transition-delay: .24s; }
@@ -2017,7 +2023,7 @@
               <h2 class="section-title reveal delay-1">Have a message or idea?</h2>
             </div>
             <p class="section-copy reveal delay-2">
-              Your message will be saved privately in the developer inbox panel.
+              Your message will be sent directly to my email and also saved in this browser inbox.
             </p>
           </div>
 
@@ -2044,26 +2050,35 @@
               </div>
             </aside>
 
-            <form class="contact-form glass reveal delay-1" id="contactForm">
+            <form class="contact-form glass reveal delay-1"
+                  id="contactForm"
+                  action="https://formsubmit.co/sggamers20155@gmail.com"
+                  method="POST">
               <div class="field">
                 <label for="name">Name</label>
-                <input id="name" type="text" placeholder="Your name">
+                <input id="name" name="name" type="text" placeholder="Your name" required>
               </div>
 
               <div class="field">
                 <label for="email">Email / Contact</label>
-                <input id="email" type="text" placeholder="Email or username">
+                <input id="email" name="email" type="text" placeholder="Email or username" required>
               </div>
 
               <div class="field">
                 <label for="subject">Subject</label>
-                <input id="subject" type="text" placeholder="Project / collab / message">
+                <input id="subject" name="subject" type="text" placeholder="Project / collab / message">
               </div>
 
               <div class="field">
                 <label for="message">Message</label>
-                <textarea id="message" placeholder="Tell me what you want..."></textarea>
+                <textarea id="message" name="message" placeholder="Tell me what you want..." required></textarea>
               </div>
+
+
+              <input type="hidden" name="_subject" value="New message from Samyy Portfolio">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_next" value="https://5ameer07.github.io/Sameerkumar/#contact">
 
               <div class="form-buttons">
                 <button class="btn btn-primary" type="submit"><span>Send message</span></button>
@@ -2105,6 +2120,8 @@
   </div>
 
   <script>
+    document.body.classList.add("js-ready");
+
     // basic elements
     const root = document.documentElement;
     const year = document.getElementById("year");
@@ -2446,14 +2463,13 @@
     }
 
     contactForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-
       const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
+      const emailValue = document.getElementById("email").value.trim();
       const subject = document.getElementById("subject").value.trim();
       const message = document.getElementById("message").value.trim();
 
-      if (!name || !email || !message) {
+      if (!name || !emailValue || !message) {
+        event.preventDefault();
         showToast("Name, contact and message add karo.");
         return;
       }
@@ -2462,7 +2478,7 @@
 
       data.push({
         name,
-        email,
+        email: emailValue,
         subject: subject || "New message",
         message,
         date: new Date().toLocaleString()
@@ -2470,8 +2486,8 @@
 
       setSavedData(data);
       renderSavedData();
-      contactForm.reset();
-      showToast("Message saved. Developer inbox me show hoga.");
+      showToast("Message email par send ho raha hai...");
+      // Do not use preventDefault here, so the form can send email.
     });
 
 
